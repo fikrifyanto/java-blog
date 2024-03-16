@@ -33,3 +33,4 @@ build/
 
 ### Tailwind ###
 /src/main/resources/static/assets/main.css
+/node_modules
