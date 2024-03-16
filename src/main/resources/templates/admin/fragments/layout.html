@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link th:href="@{/assets/css/main.css}" rel="stylesheet">
+    <title th:text="'Admin - ' + ${title}"></title>
+</head>
+<body>
+<div class="bg-white">
+
+    <main>
+        <div class="grid grid-cols-5 min-h-screen bg-slate">
+            <div th:replace="admin/fragments/sidebar :: aside"></div>
+            <div id="container" class="col-span-5 lg:col-span-4 transition-all">
+                <div th:replace="admin/fragments/header :: header"></div>
+                <div class="p-4 lg:p-8" th:insert="~{${page}}"></div>
+            </div>
+        </div>
+    </main>
+
+    <script th:src="@{/assets/js/sidebar.js}"></script>
+</div>
+</body>
+</html>

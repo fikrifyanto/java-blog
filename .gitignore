@@ -32,5 +32,5 @@ build/
 .vscode/
 
 ### Tailwind ###
-/src/main/resources/static/assets/main.css
+/src/main/resources/static/assets/css/main.css
 /node_modules
