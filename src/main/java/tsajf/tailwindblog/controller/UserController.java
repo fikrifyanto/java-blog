@@ -12,4 +12,5 @@ public class UserController {
         model.addAttribute("page", "admin/index");
         return "admin/fragments/layout";
     }
+
 }

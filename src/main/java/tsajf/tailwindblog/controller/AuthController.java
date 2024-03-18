@@ -10,4 +10,5 @@ public class AuthController {
     public String login() {
         return "admin/login";
     }
+
 }

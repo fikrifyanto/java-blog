@@ -12,4 +12,5 @@ public class VisitorController {
         model.addAttribute("page", "visitor/index");
         return "visitor/fragments/layout";
     }
+
 }

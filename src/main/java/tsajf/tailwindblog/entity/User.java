@@ -1,9 +1,7 @@
 package tsajf.tailwindblog.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,11 +16,24 @@ import lombok.Setter;
 public class User {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
+    @NotNull
+    private String name;
+
+    @NotNull
     private String username;
 
+    @NotNull
     private String password;
 
-    private String name;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    public enum Role {
+        ADMIN,
+        SUPERADMIN
+    }
 }
