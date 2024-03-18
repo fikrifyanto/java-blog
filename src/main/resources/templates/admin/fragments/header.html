@@ -7,9 +7,9 @@
     </button>
     <div class="flex justify-end items-center">
         <div></div>
-        <div class="relative" data-headlessui-state="">
+        <form th:action="@{/logout}" class="relative" method="POST">
             <button class="flex items-center gap-4 pl-6 outline-none" id="headlessui-popover-button-26"
-                    type="button" aria-expanded="false" data-headlessui-state=""><img
+                    type="submit" aria-expanded="false" data-headlessui-state=""><img
                     class="h-8 w-8 rounded-full" src="https://i.pravatar.cc/300" alt="Admin"><span
                     class="font-medium text-sm">Admin</span>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
@@ -19,6 +19,6 @@
                           clip-rule="evenodd"></path>
                 </svg>
             </button>
-        </div>
+        </form>
     </div>
 </header>
