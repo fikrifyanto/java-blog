@@ -1,29 +1,31 @@
 package tsajf.tailwindblog.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import tsajf.tailwindblog.model.UserModel;
+import tsajf.tailwindblog.repository.UserRepository;
+import tsajf.tailwindblog.entity.User;
 
 @Service
 public class LoginService implements UserDetailsService {
 
     @Autowired
-    private UserService userService;
+    private UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserModel byLogin = userService.findByLogin(username);
-        if(byLogin == null) {
+        User user = userRepository.findByUsername(username);
+
+        if (user == null) {
             return null;
         }
-        return User.builder()
-                .username(byLogin.getUsername())
-                .password(byLogin.getPassword())
-                .roles(byLogin.getRole())
+
+        return org.springframework.security.core.userdetails.User.builder()
+                .username(user.getUsername())
+                .password(user.getPassword())
+                .roles(String.valueOf(user.getRole()))
                 .build();
     }
 
