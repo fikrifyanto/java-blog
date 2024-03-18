@@ -1,6 +1,7 @@
 package tsajf.tailwindblog.dataloader;
 
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import tsajf.tailwindblog.entity.User;
 import tsajf.tailwindblog.repository.UserRepository;
@@ -9,9 +10,11 @@ import tsajf.tailwindblog.repository.UserRepository;
 public class UserLoader implements CommandLineRunner {
 
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
-    public UserLoader(UserRepository userRepository) {
+    public UserLoader(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -20,8 +23,11 @@ public class UserLoader implements CommandLineRunner {
             User admin = new User();
             admin.setName("admin");
             admin.setUsername("admin");
-            admin.setPassword("admin");
             admin.setRole(User.Role.ADMIN);
+
+            String encodedPassword = passwordEncoder.encode("admin");
+            admin.setPassword(encodedPassword);
+
             userRepository.save(admin);
         }
     }
