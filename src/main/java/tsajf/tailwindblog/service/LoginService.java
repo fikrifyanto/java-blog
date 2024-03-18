@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import tsajf.tailwindblog.model.UserModel;
 
 @Service
-public class CustomUserDetailsService implements UserDetailsService {
+public class LoginService implements UserDetailsService {
 
     @Autowired
     private UserService userService;

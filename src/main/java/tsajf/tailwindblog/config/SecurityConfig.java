@@ -11,7 +11,7 @@ import org.springframework.security.config.annotation.web.configurers.LogoutConf
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import tsajf.tailwindblog.service.CustomUserDetailsService;
+import tsajf.tailwindblog.service.LoginService;
 
 @Configuration
 @EnableWebSecurity
@@ -34,7 +34,7 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return new CustomUserDetailsService();
+        return new LoginService();
     }
 
     @Bean
