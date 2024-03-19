@@ -2,7 +2,7 @@
     <div><h1 class="font-medium">Users</h1>
         <p class="text-slate-600 text-sm mt-2">
             A list of all the users in your account including their
-            name, title, email and role.
+            name, username, and role
         </p>
     </div>
     <div>
@@ -22,21 +22,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr class="border-b">
-            <td class="py-4 px-6">Admin</td>
-            <td class="text-gray-600 py-4 px-6">admin</td>
-            <td class="text-gray-600 py-4 px-6">admin</td>
-            <td class="text-gray-600 py-4 px-6 text-right">
-                <a class="text-indigo-600 px-2" href="/admin/user/1/edit">Edit</a>
-            </td>
-        </tr>
-        <tr class="border-b">
-            <td class="py-4 px-6">Ms. Reba Ferry</td>
-            <td class="text-gray-600 py-4 px-6">noble.lueilwitz</td>
-            <td class="text-gray-600 py-4 px-6">author</td>
-            <td class="text-gray-600 py-4 px-6 text-right">
-                <a class="text-indigo-600 px-2" href="/admin/user/2/edit">Edit</a>
-                <button class="text-red-600 px-2"> Delete</button>
+        <tr th:each="user : ${users}" class="border-b">
+            <td th:text="${user.name}" class="py-4 px-6"></td>
+            <td th:text="${user.username}" class="text-gray-600 py-4 px-6"></td>
+            <td th:text="${user.role}" class="text-gray-600 py-4 px-6"></td>
+            <td>
+                <a class="text-red-600 px-2" th:href="@{'/admin/user/delete/' + ${user.id}}">Delete</a>
+                <a class="text-indigo-600 px-2" th:href="@{'/admin/user/edit/' + ${user.id}}">Edit</a>
             </td>
         </tr>
         </tbody>
@@ -55,9 +47,9 @@
                 Showing
                 <span class="font-medium">1</span>
                 to
-                <span class="font-medium">8</span>
+                <span class="font-medium">1</span>
                 of
-                <span class="font-medium">101</span>
+                <span class="font-medium">1</span>
                 results
             </p>
         </div>
@@ -75,12 +67,9 @@
                 </a>
                 <a aria-current="page"
                    class="z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 relative inline-flex items-center px-4 py-2 text-sm font-semibold"
-                   href="http://laravel-blog.test/admin/user?page=1">1</a>
-                <a aria-current="page"
-                   class="text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0 relative z-10 inline-flex items-center px-4 py-2 text-sm font-semibold"
-                   href="http://laravel-blog.test/admin/user?page=2">2</a>
+                   href="">1</a>
                 <a class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
-                   href="http://laravel-blog.test/admin/user?page=2">
+                   href="">
                     <span class="sr-only">Next</span>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                          aria-hidden="true" data-slot="icon" class="h-5 w-5">

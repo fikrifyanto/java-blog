@@ -19,13 +19,13 @@ public class UserLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        if (userRepository.findByUsername("admin") == null) {
+        if (userRepository.findByUsername("superadmin") == null) {
             User admin = new User();
-            admin.setName("admin");
-            admin.setUsername("admin");
-            admin.setRole(User.Role.ADMIN);
+            admin.setName("superadmin");
+            admin.setUsername("superadmin");
+            admin.setRole(User.Role.SUPERADMIN);
 
-            String encodedPassword = passwordEncoder.encode("admin");
+            String encodedPassword = passwordEncoder.encode("superadmin");
             admin.setPassword(encodedPassword);
 
             userRepository.save(admin);

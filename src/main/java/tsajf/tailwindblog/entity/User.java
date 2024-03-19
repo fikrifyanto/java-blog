@@ -32,6 +32,12 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @Column(name = "image_url")
+    private String imageUrl;
+
+    @Column(name = "image_path")
+    private String imagePath;
+
     public enum Role {
         ADMIN,
         SUPERADMIN
