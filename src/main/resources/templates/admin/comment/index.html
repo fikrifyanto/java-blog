@@ -1,0 +1,154 @@
+<!--<div class="flex justify-between mb-8 gap-4">-->
+<!--    <div><h1 class="font-medium">Posts</h1>-->
+<!--        <p class="text-slate-600 text-sm mt-2">-->
+<!--            A list of all posts from each user-->
+<!--        </p>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div class="border shadow-sm rounded-md overflow-x-scroll overflow-y-hidden">-->
+<!--    <table class="table-auto w-full text-sm">-->
+<!--        <thead class="border-b border-slate-300 bg-slate-50">-->
+<!--        <tr>-->
+<!--            <th class="font-medium text-left py-4 px-6">Title</th>-->
+<!--            <th class="font-medium text-left py-4 px-6">Content</th>-->
+<!--            <th></th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr th:each="post : ${posts}" class="border-b">-->
+<!--            <td th:text="${post.title}" class="py-4 px-6"></td>-->
+<!--            <td th:text="${post.content}" class="text-gray-600 py-4 px-6"></td>-->
+<!--            <td>-->
+<!--                <a class="text-red-600 px-2" th:href="@{'/admin/comment/' + ${post.id}}">See Comment</a>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--</div>-->
+<!--<div class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-0 mt-6">-->
+<!--    <div class="flex flex-1 justify-between sm:hidden">-->
+<!--        <a class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"-->
+<!--           href="">Previous</a>-->
+<!--        <a class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"-->
+<!--           href="http://laravel-blog.test/admin/user?page=2">Next</a>-->
+<!--    </div>-->
+<!--    <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">-->
+<!--        <div>-->
+<!--            <p class="text-sm text-gray-700">-->
+<!--                Showing-->
+<!--                <span class="font-medium">1</span>-->
+<!--                to-->
+<!--                <span class="font-medium">1</span>-->
+<!--                of-->
+<!--                <span class="font-medium">1</span>-->
+<!--                results-->
+<!--            </p>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">-->
+<!--                <a class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"-->
+<!--                   href="">-->
+<!--                    <span class="sr-only">Previous</span>-->
+<!--                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"-->
+<!--                         aria-hidden="true" data-slot="icon" class="h-5 w-5">-->
+<!--                        <path fill-rule="evenodd"-->
+<!--                              d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z"-->
+<!--                              clip-rule="evenodd"></path>-->
+<!--                    </svg>-->
+<!--                </a>-->
+<!--                <a aria-current="page"-->
+<!--                   class="z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 relative inline-flex items-center px-4 py-2 text-sm font-semibold"-->
+<!--                   href="">1</a>-->
+<!--                <a class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"-->
+<!--                   href="">-->
+<!--                    <span class="sr-only">Next</span>-->
+<!--                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"-->
+<!--                         aria-hidden="true" data-slot="icon" class="h-5 w-5">-->
+<!--                        <path fill-rule="evenodd"-->
+<!--                              d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z"-->
+<!--                              clip-rule="evenodd"></path>-->
+<!--                    </svg>-->
+<!--                </a>-->
+<!--            </nav>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<div class="flex justify-between mb-8 gap-4">
+    <div><h1 class="font-medium">Comments</h1>
+        <p class="text-slate-600 text-sm mt-2">
+            List of comment
+        </p>
+    </div>
+</div>
+<div class="border shadow-sm rounded-md overflow-x-scroll overflow-y-hidden">
+    <table class="table-auto w-full text-sm">
+        <thead class="border-b border-slate-300 bg-slate-50">
+        <tr>
+            <th class="font-medium text-left py-4 px-6">Name</th>
+            <th class="font-medium text-left py-4 px-6">Email</th>
+            <th class="font-medium text-left py-4 px-6">Content</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="comment : ${comments}" class="border-b">
+            <td th:text="${comment.name}" class="py-4 px-6"></td>
+            <td th:text="${comment.email}" class="text-gray-600 py-4 px-6"></td>
+            <td th:text="${comment.content}" class="text-gray-600 py-4 px-6"></td>
+            <td>
+                <a class="text-red-600 px-2" th:href="@{'/admin/comment/delete/' + ${comment.id}}">Delete</a>
+                <a class="text-indigo-600 px-2" th:href="@{'/admin/comment/' + ${comment.post.id}}">See Post</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!--<div class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-0 mt-6">-->
+<!--    <div class="flex flex-1 justify-between sm:hidden">-->
+<!--        <a class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"-->
+<!--           href="">Previous</a>-->
+<!--        <a class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"-->
+<!--           href="http://laravel-blog.test/admin/user?page=2">Next</a>-->
+<!--    </div>-->
+<!--    <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">-->
+<!--        <div>-->
+<!--            <p class="text-sm text-gray-700">-->
+<!--                Showing-->
+<!--                <span class="font-medium">1</span>-->
+<!--                to-->
+<!--                <span class="font-medium">1</span>-->
+<!--                of-->
+<!--                <span class="font-medium">1</span>-->
+<!--                results-->
+<!--            </p>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">-->
+<!--                <a class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"-->
+<!--                   href="">-->
+<!--                    <span class="sr-only">Previous</span>-->
+<!--                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"-->
+<!--                         aria-hidden="true" data-slot="icon" class="h-5 w-5">-->
+<!--                        <path fill-rule="evenodd"-->
+<!--                              d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z"-->
+<!--                              clip-rule="evenodd"></path>-->
+<!--                    </svg>-->
+<!--                </a>-->
+<!--                <a aria-current="page"-->
+<!--                   class="z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 relative inline-flex items-center px-4 py-2 text-sm font-semibold"-->
+<!--                   href="">1</a>-->
+<!--                <a class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"-->
+<!--                   href="">-->
+<!--                    <span class="sr-only">Next</span>-->
+<!--                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"-->
+<!--                         aria-hidden="true" data-slot="icon" class="h-5 w-5">-->
+<!--                        <path fill-rule="evenodd"-->
+<!--                              d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z"-->
+<!--                              clip-rule="evenodd"></path>-->
+<!--                    </svg>-->
+<!--                </a>-->
+<!--            </nav>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
