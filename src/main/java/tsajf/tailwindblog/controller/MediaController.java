@@ -1,7 +1,5 @@
 package tsajf.tailwindblog.controller;
 
-import jakarta.servlet.ServletContext;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,14 +18,14 @@ import java.util.Optional;
 @Controller
 public class MediaController {
 
-    @Autowired
-    private MediaRepository mediaRepository;
+    private final MediaRepository mediaRepository;
 
-    @Autowired
-    private MediaService mediaService;
+    private final MediaService mediaService;
 
-    @Autowired
-    ServletContext context;
+    public MediaController(MediaRepository mediaRepository, MediaService mediaService) {
+        this.mediaRepository = mediaRepository;
+        this.mediaService = mediaService;
+    }
 
     @GetMapping("/admin/media")
     public String index(Model model) {

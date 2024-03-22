@@ -40,6 +40,6 @@ public class User {
 
     public enum Role {
         ADMIN,
-        SUPERADMIN
+        SUPER_ADMIN
     }
 }

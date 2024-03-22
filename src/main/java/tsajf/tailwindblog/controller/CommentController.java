@@ -1,6 +1,5 @@
 package tsajf.tailwindblog.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,8 +11,8 @@ import tsajf.tailwindblog.repository.PostRepository;
 @Controller
 public class CommentController {
 
-    @Autowired
     private final PostRepository postRepository;
+
     private final CommentRepository commentRepository;
 
     public CommentController(PostRepository postRepository, CommentRepository commentRepository) {

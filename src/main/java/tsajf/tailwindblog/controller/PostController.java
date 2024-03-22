@@ -1,7 +1,5 @@
 package tsajf.tailwindblog.controller;
 
-import jakarta.servlet.ServletContext;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,20 +20,21 @@ import java.util.Objects;
 @Controller
 public class PostController {
 
-    @Autowired
-    private PostRepository postRepository;
+    private final PostRepository postRepository;
 
-    @Autowired
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
-    private MediaService mediaService;
+    private final MediaService mediaService;
 
-    @Autowired
-    ServletContext context;
+
+    public PostController(PostRepository postRepository, CategoryRepository categoryRepository, UserRepository userRepository, MediaService mediaService) {
+        this.postRepository = postRepository;
+        this.categoryRepository = categoryRepository;
+        this.userRepository = userRepository;
+        this.mediaService = mediaService;
+    }
 
     @GetMapping("/admin/post")
     public String index(Model model) {
@@ -93,7 +92,7 @@ public class PostController {
         post.setCategory(store.getCategory());
         post.setContent(store.getContent());
 
-        if(!file.isEmpty()) {
+        if (!file.isEmpty()) {
             mediaService.remove(post.getMedia());
             Media media = mediaService.save(store.getTitle(), file);
             post.setMedia(media);

@@ -17,6 +17,11 @@ import tsajf.tailwindblog.service.LoginService;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
+    private final LoginService loginService;
+
+    public SecurityConfig(LoginService loginService) {
+        this.loginService = loginService;
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -36,7 +41,7 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return new LoginService();
+        return loginService;
     }
 
     @Bean

@@ -1,7 +1,7 @@
 
 <div class="flex justify-between mb-8 gap-4">
     <div><h1 class="font-medium">Add Post</h1>
-        <p class="text-slate-600 text-sm mt-2"> Add the post including their title, author, category, and date </p>
+        <p class="text-slate-600 text-sm mt-2"> Add the post including their title, author, category and date </p>
     </div>
 </div>
 <form th:action="@{'/admin/post/update/' + ${post.id}}" th:object="${post}" enctype="multipart/form-data" method="POST" class="w-full">
@@ -58,7 +58,7 @@
                                     <input id="input-file-default" type="hidden" th:value="*{media.url}">
                                 </label>
                             </div>
-                            <p class="text-xs leading-5 text-gray-600"> PNG, JPG, GIF up to 10MB </p>
+                            <p class="text-xs leading-5 text-gray-600"> PNG, JPG, GIF up to 10 MB </p>
                         </div>
                     </div>
                 </div>

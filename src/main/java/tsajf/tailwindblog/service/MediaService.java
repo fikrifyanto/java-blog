@@ -1,6 +1,5 @@
 package tsajf.tailwindblog.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import tsajf.tailwindblog.entity.Media;
@@ -17,8 +16,11 @@ import java.util.Objects;
 @Service
 public class MediaService {
 
-    @Autowired
-    private MediaRepository mediaRepository;
+    private final MediaRepository mediaRepository;
+
+    public MediaService(MediaRepository mediaRepository) {
+        this.mediaRepository = mediaRepository;
+    }
 
     public Media save(String name, MultipartFile file) throws IOException {
         Path directory = Paths.get("upload");

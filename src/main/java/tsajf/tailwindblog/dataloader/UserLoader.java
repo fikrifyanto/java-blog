@@ -21,9 +21,9 @@ public class UserLoader implements CommandLineRunner {
     public void run(String... args) {
         if (userRepository.findByUsername("superadmin") == null) {
             User admin = new User();
-            admin.setName("superadmin");
+            admin.setName("Super Admin");
             admin.setUsername("superadmin");
-            admin.setRole(User.Role.SUPERADMIN);
+            admin.setRole(User.Role.SUPER_ADMIN);
 
             String encodedPassword = passwordEncoder.encode("superadmin");
             admin.setPassword(encodedPassword);
