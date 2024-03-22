@@ -23,7 +23,7 @@ public class Comment {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "postId", referencedColumnName = "id")
+    @JoinColumn(name = "post_id", referencedColumnName = "id")
     private Post post;
 
     @NotNull
