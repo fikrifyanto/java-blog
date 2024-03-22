@@ -1,8 +1,9 @@
-<aside id="sidebar" class="fixed lg:static w-screen lg:w-auto z-50 col-span-5 lg:col-span-1 bg-slate-900/80 transition-transform h-full -translate-x-full lg:translate-x-0">
+<aside id="sidebar"
+       class="fixed lg:static w-screen lg:w-auto z-50 col-span-5 lg:col-span-1 bg-slate-900/80 transition-transform h-full -translate-x-full lg:translate-x-0">
     <div class="grid grid-cols-5 w-full h-full">
         <div class="col-span-4 lg:col-span-5 bg-indigo-600 h-full px-4 py-5">
             <a class="flex items-center"
-               href="/admin/user">
+               th:href="@{/admin/user}">
                 <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=white" alt="Tailwind Blog">
                 <span class="font-medium text-white text-xl pl-2"> Tailwind Blog </span>
             </a>
@@ -10,8 +11,8 @@
                 <ul role="list">
                     <li>
                         <ul role="list" class="flex flex-col gap-2">
-                            <li class="bg-indigo-700 text-white rounded-md p-2 text-sm font-sans hover:bg-indigo-700">
-                                <a class="flex items-center gap-3" href="/admin/user">
+                            <li th:class="${page == 'admin/user/index' ? 'bg-indigo-700 text-white rounded-md p-2 text-sm font-sans hover:bg-indigo-700' : 'bg-transparent text-slate-300 rounded-md p-2 text-sm font-sans hover:bg-indigo-700'}">
+                                <a class="flex items-center gap-3" th:href="@{/admin/user}">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                          stroke-width="1.5" stroke="currentColor" aria-hidden="true"
                                          data-slot="icon" class="h-6 w-6">
@@ -21,8 +22,8 @@
                                     User
                                 </a>
                             </li>
-                            <li class="bg-transparent text-slate-300 rounded-md p-2 text-sm font-sans hover:bg-indigo-700">
-                                <a class="flex items-center gap-3" href="/admin/post">
+                            <li th:class="${page == 'admin/post/index' ? 'bg-indigo-700 text-white rounded-md p-2 text-sm font-sans hover:bg-indigo-700' : 'bg-transparent text-slate-300 rounded-md p-2 text-sm font-sans hover:bg-indigo-700'}">
+                                <a class="flex items-center gap-3" th:href="@{/admin/post}">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                          stroke-width="1.5" stroke="currentColor" aria-hidden="true"
                                          data-slot="icon" class="h-6 w-6">
@@ -32,8 +33,8 @@
                                     Post
                                 </a>
                             </li>
-                            <li class="bg-transparent text-slate-300 rounded-md p-2 text-sm font-sans hover:bg-indigo-700">
-                                <a class="flex items-center gap-3" href="/admin/category">
+                            <li th:class="${page == 'admin/category/index' ? 'bg-indigo-700 text-white rounded-md p-2 text-sm font-sans hover:bg-indigo-700' : 'bg-transparent text-slate-300 rounded-md p-2 text-sm font-sans hover:bg-indigo-700'}">
+                                <a class="flex items-center gap-3" th:href="@{/admin/category}">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                          stroke-width="1.5" stroke="currentColor" aria-hidden="true"
                                          data-slot="icon" class="h-6 w-6">
@@ -45,8 +46,8 @@
                                     Category
                                 </a>
                             </li>
-                            <li class="bg-transparent text-slate-300 rounded-md p-2 text-sm font-sans hover:bg-indigo-700">
-                                <a class="flex items-center gap-3" href="/admin/media">
+                            <li th:class="${page == 'admin/media/index' ? 'bg-indigo-700 text-white rounded-md p-2 text-sm font-sans hover:bg-indigo-700' : 'bg-transparent text-slate-300 rounded-md p-2 text-sm font-sans hover:bg-indigo-700'}">
+                                <a class="flex items-center gap-3" th:href="@{/admin/media}">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                          stroke-width="1.5" stroke="currentColor" aria-hidden="true"
                                          data-slot="icon" class="h-6 w-6">
@@ -56,8 +57,8 @@
                                     Media
                                 </a>
                             </li>
-                            <li class="bg-transparent text-slate-300 rounded-md p-2 text-sm font-sans hover:bg-indigo-700">
-                                <a class="flex items-center gap-3" href="/admin/comment">
+                            <li th:class="${page == 'admin/comment/index' ? 'bg-indigo-700 text-white rounded-md p-2 text-sm font-sans hover:bg-indigo-700' : 'bg-transparent text-slate-300 rounded-md p-2 text-sm font-sans hover:bg-indigo-700'}">
+                                <a class="flex items-center gap-3" th:href="@{/admin/comment}">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                          stroke-width="1.5" stroke="currentColor" aria-hidden="true"
                                          data-slot="icon" class="h-6 w-6">
@@ -73,7 +74,8 @@
             </nav>
         </div>
         <div class="lg:hidden">
-            <button id="close-sidebar-button" class="bg-slate-900/50 rounded-full mx-auto h-8 w-8 mt-5 flex items-center justify-center">
+            <button type="button" id="close-sidebar-button"
+                    class="bg-slate-900/50 rounded-full mx-auto h-8 w-8 mt-5 flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                      stroke="currentColor" aria-hidden="true" data-slot="icon" class="h-6 w-6 text-white">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"></path>
