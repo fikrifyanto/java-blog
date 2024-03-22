@@ -52,6 +52,7 @@ public class CategoryController {
     public String update(@PathVariable("id") Integer id, @ModelAttribute Category update) {
         Category category = categoryRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid category Id:" + id));
+        category.setName(update.getName());
         categoryRepository.save(category);
         return "redirect:/admin/category";
     }

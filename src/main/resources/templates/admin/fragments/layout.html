@@ -13,9 +13,9 @@
 
     <main>
         <div class="grid grid-cols-5 min-h-screen bg-slate">
-            <div th:replace="admin/fragments/sidebar :: aside"></div>
+            <div th:replace="~{admin/fragments/sidebar}"></div>
             <div id="container" class="col-span-5 lg:col-span-4 transition-all">
-                <div th:replace="admin/fragments/header :: header"></div>
+                <div th:replace="~{admin/fragments/header}"></div>
                 <div class="p-4 lg:p-8" th:insert="~{${page}}"></div>
             </div>
         </div>
