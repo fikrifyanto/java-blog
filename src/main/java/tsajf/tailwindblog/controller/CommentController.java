@@ -32,7 +32,7 @@ public class CommentController {
     @GetMapping("/admin/comment/{post_id}")
     public String seeComment(@PathVariable Integer post_id, Model model) {
         Post post = postRepository.findById(post_id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + post_id));
+                .orElseThrow(() -> new IllegalArgumentException("Invalid post Id:" + post_id));
         model.addAttribute("title", "Post");
         model.addAttribute("page", "admin/comment/seePost");
         model.addAttribute("post", post);
