@@ -10,17 +10,17 @@
             <div>
                 <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Title</label>
                 <div class="mt-2">
-                    <input id="title" type="text" name="title"
+                    <input class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3" id="title" name="title"
                            required
-                           th:field="*{title}"
-                           th:value="*{title}"
-                           class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3">
+                           th:field="*{post.title}"
+                           th:value="*{post.title}"
+                           type="text">
                 </div>
             </div>
             <div>
                 <label for="editor" class="block text-sm font-medium leading-6 text-gray-900">Content</label>
                 <div class="mt-2">
-                    <textarea id="editor" name="content" th:text="*{content}" required></textarea>
+                    <textarea id="editor" name="content" th:text="*{post.content}" required></textarea>
                 </div>
             </div>
         </div>
@@ -55,6 +55,7 @@
                                        class="relative cursor-pointer rounded-md bg-white text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
                                     <span>Select a file</span>
                                     <input name="file" id="input-file" accept="image/*" type="file" class="sr-only">
+                                    <input id="input-file-default" type="hidden" th:value="*{media.url}">
                                 </label>
                             </div>
                             <p class="text-xs leading-5 text-gray-600"> PNG, JPG, GIF up to 10MB </p>
@@ -67,8 +68,8 @@
                 <div class="mt-2">
                     <input id="date" type="date"
                            required
-                           th:field="*{date}"
-                           th:value="*{date}"
+                           th:field="*{post.date}"
+                           th:value="*{post.date}"
                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3">
                 </div>
             </div>
@@ -76,8 +77,8 @@
                 <label for="category" class="block text-sm font-medium leading-6 text-gray-900">Category</label>
                 <div class="mt-2">
                     <select id="category" name="categoryId"
-                            th:field="*{category}"
-                            th:value="*{category}"
+                            th:field="*{post.ategory}"
+                            th:value="*{post.category}"
                             required
                             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 sm:text-sm sm:leading-6 px-3">
                         <option th:each="category : ${categories}" th:value="${category.id}"

@@ -94,6 +94,7 @@ public class PostController {
         post.setContent(store.getContent());
 
         if(!file.isEmpty()) {
+            mediaService.remove(post.getMedia());
             Media media = mediaService.save(store.getTitle(), file);
             post.setMedia(media);
         }
