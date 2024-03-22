@@ -7,10 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import tsajf.tailwindblog.config.UrlConfig;
 import tsajf.tailwindblog.entity.Media;
 import tsajf.tailwindblog.entity.User;
 import tsajf.tailwindblog.repository.MediaRepository;
+import tsajf.tailwindblog.service.MediaService;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,7 +23,8 @@ public class MediaController {
     @Autowired
     private MediaRepository mediaRepository;
 
-    private UrlConfig urlConfig;
+    @Autowired
+    private MediaService mediaService;
 
     @Autowired
     ServletContext context;
@@ -65,16 +66,7 @@ public class MediaController {
 
     @PostMapping(value = "/admin/media/store", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String store(@RequestParam("file") MultipartFile file, @ModelAttribute("uploadForm") Media store) throws IOException {
-        Path path = Path.of("upload/" + file.getOriginalFilename());
-        file.transferTo(path);
-
-        Media media = new Media();
-        media.setName(store.getName());
-        media.setPath(String.valueOf(path));
-        media.setUrl(urlConfig.getBaseUrl(String.valueOf(path)));
-
-        mediaRepository.save(media);
-
+        mediaService.save(store.getName(), file);
         return "redirect:/admin/media";
     }
 

@@ -34,3 +34,6 @@ build/
 ### Tailwind ###
 /src/main/resources/static/assets/css/main.css
 /node_modules
+
+### Upload Folder ###
+/upload/

@@ -6,6 +6,7 @@ const clearButton = document.getElementById('clear-button')
 
 if (inputFile && clearButton) {
     inputFile.addEventListener('change', (event) => {
+        console.log('oke')
         const [file] = event.target.files
 
         if (file) {

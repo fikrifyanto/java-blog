@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Date;
-import java.util.List;
 
 @Getter
 @Setter
@@ -22,15 +21,15 @@ public class Post {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "userId", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "categoryId", referencedColumnName = "id")
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
 
     @OneToOne
-    @JoinColumn(name = "mediaId", referencedColumnName = "id")
+    @JoinColumn(name = "media_id", referencedColumnName = "id")
     private Media media;
 
     @NotNull
@@ -40,5 +39,6 @@ public class Post {
     private Date date;
 
     @NotNull
+    @Column(name = "content", columnDefinition = "TEXT")
     private String content;
 }

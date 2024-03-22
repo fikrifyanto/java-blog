@@ -1,6 +1,8 @@
 <div class="flex justify-between mb-8 gap-4">
-    <div><h1 class="font-medium">Add Media</h1>
-        <p class="text-slate-600 text-sm mt-2"> Add the medias including their image and name </p></div>
+    <div>
+        <h1 class="font-medium">Add Media</h1>
+        <p class="text-slate-600 text-sm mt-2"> Add the medias including their image and name </p>
+    </div>
 </div>
 <form th:action="@{'/admin/media/store'}" th:object="${media}" enctype="multipart/form-data" method="POST"
       class="flex flex-col gap-4 max-w-xl">
@@ -39,7 +41,8 @@
             </div>
         </div>
     </div>
-    <div><label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
+    <div>
+        <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
         <div class="mt-2">
             <input name="name"
                    id="name"
