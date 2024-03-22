@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Date;
 import java.util.List;
 
 @Getter
@@ -24,12 +25,20 @@ public class Post {
     @JoinColumn(name = "userId", referencedColumnName = "id")
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "categoryId", referencedColumnName = "id")
+    private Category category;
+
+    @OneToOne
+    @JoinColumn(name = "mediaId", referencedColumnName = "id")
+    private Media media;
+
     @NotNull
     private String title;
 
     @NotNull
-    private String content;
+    private Date date;
 
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
-    private List<Comment> comments;
+    @NotNull
+    private String content;
 }
