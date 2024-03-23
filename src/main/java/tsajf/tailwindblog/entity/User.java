@@ -1,11 +1,9 @@
 package tsajf.tailwindblog.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
@@ -13,25 +11,29 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
+@Builder
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
+    @NotNull(message = "Name is required!")
+    @NotEmpty(message = "Name is required!")
     private String name;
 
-    @NotNull
+    @NotNull(message = "Username is required!")
+    @NotEmpty(message = "Username is required!")
     @Column(unique = true)
     private String username;
 
-    @NotNull
+    @NotNull(message = "Password is required!")
+    @NotEmpty(message = "Password is required!")
     private String password;
 
-    @NotNull
     @Enumerated(EnumType.STRING)
-    private Role role;
+    @Builder.Default
+    private Role role = Role.ADMIN;
 
     @Column(name = "image_url")
     private String imageUrl;
