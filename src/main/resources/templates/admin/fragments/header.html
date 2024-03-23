@@ -10,7 +10,7 @@
         <div class="relative">
             <button id="popup-trigger" class="flex items-center gap-4 pl-6 outline-none" aria-expanded="false">
                 <img class="h-8 w-8 rounded-full" src="https://i.pravatar.cc/300" alt="Admin">
-                <span class="font-medium text-sm">Admin</span>
+                <span class="font-medium text-sm" th:text="${auth.getName()}"></span>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                      aria-hidden="true" data-slot="icon" class="h-4 w-4 text-slate-400 stroke-2">
                     <path fill-rule="evenodd"
