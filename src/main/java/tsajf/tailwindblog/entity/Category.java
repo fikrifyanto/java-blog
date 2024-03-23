@@ -1,6 +1,7 @@
 package tsajf.tailwindblog.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,7 +20,8 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
+    @NotNull(message = "Name is required!")
+    @NotEmpty(message = "Name is required!")
     private String name;
 
 }

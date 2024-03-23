@@ -1,95 +1,107 @@
-
-<div class="flex justify-between mb-8 gap-4">
-    <div><h1 class="font-medium">Add Post</h1>
-        <p class="text-slate-600 text-sm mt-2"> Add the post including their title, author, category and date </p>
-    </div>
-</div>
-<form th:action="@{'/admin/post/update/' + ${id}}" th:object="${post}" enctype="multipart/form-data" method="POST" class="w-full">
-    <div class="grid grid-cols-3 gap-8">
-        <div class="col-span-2 flex flex-col gap-4">
-            <div>
-                <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Title</label>
-                <div class="mt-2">
-                    <input class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3" id="title" name="title"
-                           required
-                           th:field="*{title}"
-                           th:value="*{title}"
-                           type="text">
-                </div>
-            </div>
-            <div>
-                <label for="editor" class="block text-sm font-medium leading-6 text-gray-900">Content</label>
-                <div class="mt-2">
-                    <textarea id="editor" name="content" th:text="*{content}" required></textarea>
-                </div>
-            </div>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/fragments/layout}" lang="en">
+<head>
+    <title>Edit Post</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="flex justify-between mb-8 gap-4">
+        <div><h1 class="font-medium">Add Post</h1>
+            <p class="text-slate-600 text-sm mt-2"> Add the post including their title, author, category and date </p>
         </div>
-        <div class="flex flex-col gap-4">
-            <div>
-                <label for="input-file" class="block text-sm font-medium leading-6 text-gray-900">Image</label>
-                <div class="mt-2">
-                    <div class="mt-2 flex justify-center rounded-lg border border-gray-300 px-6 py-10">
-                        <div id="input-file-preview" class="relative hidden">
-                            <div class="p-4 border rounded-lg">
-                                <img class="max-h-44" src="" alt="Selected Image"/>
-                            </div>
-                            <button id="clear-button" type="button"
-                                    class="h-8 w-8 flex items-center justify-center bg-indigo-500 rounded-full absolute -top-2 -right-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                     stroke-width="1.5"
-                                     stroke="currentColor" class="w-6 h-6 text-white">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
-                                </svg>
-                            </button>
-                        </div>
-                        <div id="input-file-select" class="text-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                 aria-hidden="true"
-                                 data-slot="icon" class="mx-auto h-12 w-12 text-gray-300">
-                                <path fill-rule="evenodd"
-                                      d="M1 5.25A2.25 2.25 0 0 1 3.25 3h13.5A2.25 2.25 0 0 1 19 5.25v9.5A2.25 2.25 0 0 1 16.75 17H3.25A2.25 2.25 0 0 1 1 14.75v-9.5Zm1.5 5.81v3.69c0 .414.336.75.75.75h13.5a.75.75 0 0 0 .75-.75v-2.69l-2.22-2.219a.75.75 0 0 0-1.06 0l-1.91 1.909.47.47a.75.75 0 1 1-1.06 1.06L6.53 8.091a.75.75 0 0 0-1.06 0l-2.97 2.97ZM12 7a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"
-                                      clip-rule="evenodd"></path>
-                            </svg>
-                            <div class="mt-4 flex justify-center text-sm leading-6 text-gray-600">
-                                <label for="input-file"
-                                       class="relative cursor-pointer rounded-md bg-white text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
-                                    <span>Select a file</span>
-                                    <input name="file" id="input-file" accept="image/*" type="file" class="sr-only">
-                                    <input id="input-file-default" type="hidden" th:value="*{media.url}">
-                                </label>
-                            </div>
-                            <p class="text-xs leading-5 text-gray-600"> PNG, JPG, GIF up to 10 MB </p>
-                        </div>
+    </div>
+    <form th:action="@{'/admin/post/update/' + ${id}}" th:object="${post}" enctype="multipart/form-data" method="POST"
+          class="w-full">
+        <div class="grid grid-cols-3 gap-8">
+            <div class="col-span-2 flex flex-col gap-4">
+                <div>
+                    <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Title</label>
+                    <div class="mt-2">
+                        <input class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
+                               id="title" name="title"
+                               required
+                               th:field="*{title}"
+                               th:value="*{title}"
+                               type="text">
+                    </div>
+                </div>
+                <div>
+                    <label for="editor" class="block text-sm font-medium leading-6 text-gray-900">Content</label>
+                    <div class="mt-2">
+                        <textarea id="editor" name="content" th:text="*{content}" required></textarea>
                     </div>
                 </div>
             </div>
-            <div>
-                <label for="date" class="block text-sm font-medium leading-6 text-gray-900">Date</label>
-                <div class="mt-2">
-                    <input id="date" type="date"
-                           required
-                           th:field="*{date}"
-                           th:value="*{date}"
-                           class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3">
+            <div class="flex flex-col gap-4">
+                <div>
+                    <label for="input-file" class="block text-sm font-medium leading-6 text-gray-900">Image</label>
+                    <div class="mt-2">
+                        <div class="mt-2 flex justify-center rounded-lg border border-gray-300 px-6 py-10">
+                            <div id="input-file-preview" class="relative hidden">
+                                <div class="p-4 border rounded-lg">
+                                    <img class="max-h-44" src="" alt="Selected Image"/>
+                                </div>
+                                <button id="clear-button" type="button"
+                                        class="h-8 w-8 flex items-center justify-center bg-indigo-500 rounded-full absolute -top-2 -right-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         stroke-width="1.5"
+                                         stroke="currentColor" class="w-6 h-6 text-white">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div id="input-file-select" class="text-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                     aria-hidden="true"
+                                     data-slot="icon" class="mx-auto h-12 w-12 text-gray-300">
+                                    <path fill-rule="evenodd"
+                                          d="M1 5.25A2.25 2.25 0 0 1 3.25 3h13.5A2.25 2.25 0 0 1 19 5.25v9.5A2.25 2.25 0 0 1 16.75 17H3.25A2.25 2.25 0 0 1 1 14.75v-9.5Zm1.5 5.81v3.69c0 .414.336.75.75.75h13.5a.75.75 0 0 0 .75-.75v-2.69l-2.22-2.219a.75.75 0 0 0-1.06 0l-1.91 1.909.47.47a.75.75 0 1 1-1.06 1.06L6.53 8.091a.75.75 0 0 0-1.06 0l-2.97 2.97ZM12 7a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"
+                                          clip-rule="evenodd"></path>
+                                </svg>
+                                <div class="mt-4 flex justify-center text-sm leading-6 text-gray-600">
+                                    <label for="input-file"
+                                           class="relative cursor-pointer rounded-md bg-white text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+                                        <span>Select a file</span>
+                                        <input name="file" id="input-file" accept="image/*" type="file" class="sr-only">
+                                        <input th:if="${media != null}" id="input-file-default" type="hidden" th:value="*{media.url}">
+                                    </label>
+                                </div>
+                                <p class="text-xs leading-5 text-gray-600"> PNG, JPG, GIF up to 10 MB </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <label for="category" class="block text-sm font-medium leading-6 text-gray-900">Category</label>
-                <div class="mt-2">
-                    <select id="category" name="categoryId"
-                            th:field="*{category}"
-                            th:value="*{category}"
-                            required
-                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 sm:text-sm sm:leading-6 px-3">
-                        <option th:each="category : ${categories}" th:value="${category.id}"
-                                th:text="${category.name}"></option>
-                    </select>
+                <div>
+                    <label for="date" class="block text-sm font-medium leading-6 text-gray-900">Date</label>
+                    <div class="mt-2">
+                        <input id="date" type="date"
+                               required
+                               th:field="*{date}"
+                               th:value="*{date}"
+                               class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3">
+                    </div>
                 </div>
+                <div>
+                    <label for="category" class="block text-sm font-medium leading-6 text-gray-900">Category</label>
+                    <div class="mt-2">
+                        <select id="category" name="categoryId"
+                                th:field="*{category}"
+                                th:value="*{category}"
+                                required
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 sm:text-sm sm:leading-6 px-3">
+                            <option th:each="category : ${categories}" th:value="${category.id}"
+                                    th:text="${category.name}"></option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit"
+                        class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mt-2">
+                    Edit
+                </button>
             </div>
-            <button type="submit"
-                    class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mt-2">
-                Edit
-            </button>
         </div>
-    </div>
-</form>
+    </form>
+</div>
+</body>
+
+</html>

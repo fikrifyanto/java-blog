@@ -22,20 +22,17 @@ public class CommentController {
 
     @GetMapping("/admin/comment")
     public String getAllPosts(Model model) {
-        model.addAttribute("title", "Comment List");
-        model.addAttribute("page", "admin/comment/index");
+        model.addAttribute("page", "comment");
         model.addAttribute("comments", commentRepository.findAll());
-        return "admin/fragments/layout";
+        return "admin/comment/index";
     }
 
     @GetMapping("/admin/comment/{post_id}")
     public String seeComment(@PathVariable Integer post_id, Model model) {
         Post post = postRepository.findById(post_id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid post Id:" + post_id));
-        model.addAttribute("title", "Post");
-        model.addAttribute("page", "admin/comment/seePost");
         model.addAttribute("post", post);
-        return "admin/fragments/layout";
+        return "admin/comment/seePost";
     }
 
     @GetMapping("/admin/comment/delete/{id}")
