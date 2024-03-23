@@ -22,6 +22,7 @@ public class CategoryController {
 
     @GetMapping("/admin/category")
     public String index(Model model) {
+        model.addAttribute("page", "category");
         model.addAttribute("categories", categoryRepository.findAll());
         return "admin/category/index";
     }

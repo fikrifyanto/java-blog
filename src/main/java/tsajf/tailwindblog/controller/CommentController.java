@@ -22,6 +22,7 @@ public class CommentController {
 
     @GetMapping("/admin/comment")
     public String getAllPosts(Model model) {
+        model.addAttribute("page", "comment");
         model.addAttribute("comments", commentRepository.findAll());
         return "admin/comment/index";
     }

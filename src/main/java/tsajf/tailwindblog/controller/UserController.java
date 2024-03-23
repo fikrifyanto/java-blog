@@ -28,6 +28,7 @@ public class UserController {
 
     @GetMapping("/admin/user")
     public String index(Model model) {
+        model.addAttribute("page", "user");
         model.addAttribute("users", userRepository.findAll());
         return "admin/user/index";
     }

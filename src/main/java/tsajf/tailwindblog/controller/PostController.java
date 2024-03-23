@@ -39,6 +39,7 @@ public class PostController {
 
     @GetMapping("/admin/post")
     public String index(Model model) {
+        model.addAttribute("page", "post");
         model.addAttribute("posts", postRepository.findAll());
         return "admin/post/index";
     }

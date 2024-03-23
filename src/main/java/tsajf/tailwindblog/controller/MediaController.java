@@ -32,6 +32,7 @@ public class MediaController {
 
     @GetMapping("/admin/media")
     public String index(Model model) {
+        model.addAttribute("page", "media");
         model.addAttribute("medias", mediaRepository.findAll());
         return "admin/media/index";
     }

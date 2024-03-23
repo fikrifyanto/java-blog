@@ -11,7 +11,7 @@
                 <ul role="list">
                     <li>
                         <ul role="list" class="flex flex-col gap-2">
-                            <li th:class="${page == 'admin/user/index' ? 'bg-indigo-700 text-white rounded-md p-2 text-sm font-sans hover:bg-indigo-700' : 'bg-transparent text-slate-300 rounded-md p-2 text-sm font-sans hover:bg-indigo-700'}">
+                            <li th:class="${page == 'user' ? 'bg-indigo-700 text-white rounded-md p-2 text-sm font-sans hover:bg-indigo-700' : 'bg-transparent text-slate-300 rounded-md p-2 text-sm font-sans hover:bg-indigo-700'}">
                                 <a class="flex items-center gap-3" th:href="@{/admin/user}">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                          stroke-width="1.5" stroke="currentColor" aria-hidden="true"
@@ -22,7 +22,7 @@
                                     User
                                 </a>
                             </li>
-                            <li th:class="${page == 'admin/post/index' ? 'bg-indigo-700 text-white rounded-md p-2 text-sm font-sans hover:bg-indigo-700' : 'bg-transparent text-slate-300 rounded-md p-2 text-sm font-sans hover:bg-indigo-700'}">
+                            <li th:class="${page == 'post' ? 'bg-indigo-700 text-white rounded-md p-2 text-sm font-sans hover:bg-indigo-700' : 'bg-transparent text-slate-300 rounded-md p-2 text-sm font-sans hover:bg-indigo-700'}">
                                 <a class="flex items-center gap-3" th:href="@{/admin/post}">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                          stroke-width="1.5" stroke="currentColor" aria-hidden="true"
@@ -33,7 +33,7 @@
                                     Post
                                 </a>
                             </li>
-                            <li th:class="${page == 'admin/category/index' ? 'bg-indigo-700 text-white rounded-md p-2 text-sm font-sans hover:bg-indigo-700' : 'bg-transparent text-slate-300 rounded-md p-2 text-sm font-sans hover:bg-indigo-700'}">
+                            <li th:class="${page == 'category' ? 'bg-indigo-700 text-white rounded-md p-2 text-sm font-sans hover:bg-indigo-700' : 'bg-transparent text-slate-300 rounded-md p-2 text-sm font-sans hover:bg-indigo-700'}">
                                 <a class="flex items-center gap-3" th:href="@{/admin/category}">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                          stroke-width="1.5" stroke="currentColor" aria-hidden="true"
@@ -46,7 +46,7 @@
                                     Category
                                 </a>
                             </li>
-                            <li th:class="${page == 'admin/media/index' ? 'bg-indigo-700 text-white rounded-md p-2 text-sm font-sans hover:bg-indigo-700' : 'bg-transparent text-slate-300 rounded-md p-2 text-sm font-sans hover:bg-indigo-700'}">
+                            <li th:class="${page == 'media' ? 'bg-indigo-700 text-white rounded-md p-2 text-sm font-sans hover:bg-indigo-700' : 'bg-transparent text-slate-300 rounded-md p-2 text-sm font-sans hover:bg-indigo-700'}">
                                 <a class="flex items-center gap-3" th:href="@{/admin/media}">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                          stroke-width="1.5" stroke="currentColor" aria-hidden="true"
@@ -57,7 +57,7 @@
                                     Media
                                 </a>
                             </li>
-                            <li th:class="${page == 'admin/comment/index' ? 'bg-indigo-700 text-white rounded-md p-2 text-sm font-sans hover:bg-indigo-700' : 'bg-transparent text-slate-300 rounded-md p-2 text-sm font-sans hover:bg-indigo-700'}">
+                            <li th:class="${page == 'comment' ? 'bg-indigo-700 text-white rounded-md p-2 text-sm font-sans hover:bg-indigo-700' : 'bg-transparent text-slate-300 rounded-md p-2 text-sm font-sans hover:bg-indigo-700'}">
                                 <a class="flex items-center gap-3" th:href="@{/admin/comment}">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                          stroke-width="1.5" stroke="currentColor" aria-hidden="true"
