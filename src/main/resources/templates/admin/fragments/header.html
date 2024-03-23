@@ -9,7 +9,9 @@
         <div></div>
         <div class="relative">
             <button id="popup-trigger" class="flex items-center gap-4 pl-6 outline-none" aria-expanded="false">
-                <img class="h-8 w-8 rounded-full" th:src="${#authentication.getPrincipal().imageUrl != null ? #authentication.getPrincipal().imageUrl : 'https://api.dicebear.com/8.x/thumbs/svg?seed=' + auth.name}" alt="Admin">
+                <img class="h-8 w-8 rounded-full"
+                     th:src="${#authentication.getPrincipal().imageUrl != null ? #authentication.getPrincipal().imageUrl : 'https://api.dicebear.com/8.x/thumbs/svg?seed=' + #authentication.getPrincipal().name}"
+                     alt="Admin">
                 <span class="font-medium text-sm" th:text="${#authentication.getPrincipal().name}"></span>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                      aria-hidden="true" data-slot="icon" class="h-4 w-4 text-slate-400 stroke-2">
@@ -18,9 +20,12 @@
                           clip-rule="evenodd"></path>
                 </svg>
             </button>
-            <div id="popup-content" class="popup-content hidden absolute right-0 mt-2 w-30 bg-white border border-gray-200 rounded shadow-md z-10">
-                <a th:href="@{/admin/profile}" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">Your Profile</a>
-                <form th:action="@{/logout}" method="POST" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
+            <div id="popup-content"
+                 class="popup-content hidden absolute right-0 mt-2 w-30 bg-white border border-gray-200 rounded shadow-md z-10">
+                <a th:href="@{/admin/profile}" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">Your
+                    Profile</a>
+                <form th:action="@{/logout}" method="POST"
+                      class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
                     <button type="submit" class="outline-none">Logout</button>
                 </form>
             </div>
