@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import tsajf.tailwindblog.entity.Category;
+import tsajf.tailwindblog.model.Category;
 import tsajf.tailwindblog.repository.CategoryRepository;
 
 @Controller

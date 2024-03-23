@@ -10,13 +10,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import tsajf.tailwindblog.entity.User;
+import tsajf.tailwindblog.model.User;
 import tsajf.tailwindblog.repository.UserRepository;
 import tsajf.tailwindblog.service.UploadService;
 import tsajf.tailwindblog.utils.SecurityUtils;
 
 import java.io.IOException;
-import java.util.Objects;
 
 @Controller
 public class ProfileController {
@@ -32,7 +31,7 @@ public class ProfileController {
 
     @GetMapping("/admin/profile")
     public String index(Model model) {
-        User user = userRepository.findByUsername(Objects.requireNonNull(SecurityUtils.getCurrentUser()).getUsername());
+        User user = SecurityUtils.getCurrentUser();
         model.addAttribute("user", user);
         return "admin/profile";
     }

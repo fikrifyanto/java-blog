@@ -2,12 +2,13 @@ package tsajf.tailwindblog.controller;
 
 import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import tsajf.tailwindblog.entity.User;
+import tsajf.tailwindblog.model.User;
 import tsajf.tailwindblog.repository.UserRepository;
 import tsajf.tailwindblog.service.UploadService;
 import tsajf.tailwindblog.utils.SecurityUtils;
@@ -21,9 +22,12 @@ public class UserController {
 
     private final UploadService uploadService;
 
-    public UserController(UserRepository userRepository, UploadService uploadService) {
+    private final PasswordEncoder passwordEncoder;
+
+    public UserController(UserRepository userRepository, UploadService uploadService, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.uploadService = uploadService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/admin/user")
@@ -54,6 +58,7 @@ public class UserController {
 
         String filePath = uploadService.save(file);
 
+        store.setPassword(passwordEncoder.encode(store.getPassword()));
         store.setImagePath(filePath);
         store.setImageUrl(SecurityUtils.getBaseUrl(filePath));
         userRepository.save(store);
@@ -82,16 +87,18 @@ public class UserController {
             return "admin/user/edit";
         }
 
-        String filePath = uploadService.save(file);
-
         User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
         user.setName(update.getName());
         user.setUsername(update.getUsername());
-        user.setPassword(update.getPassword());
-        user.setImagePath(filePath);
-        user.setImageUrl(SecurityUtils.getBaseUrl(filePath));
-        userRepository.save(user);
+        user.setPassword(passwordEncoder.encode(update.getPassword()));
 
+        if(!file.isEmpty()) {
+            String filePath = uploadService.save(file);
+            user.setImagePath(filePath);
+            user.setImageUrl(SecurityUtils.getBaseUrl(filePath));
+        }
+
+        userRepository.save(user);
         return "redirect:/admin/user";
     }
 

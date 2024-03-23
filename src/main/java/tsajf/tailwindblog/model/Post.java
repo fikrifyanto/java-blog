@@ -1,4 +1,4 @@
-package tsajf.tailwindblog.entity;
+package tsajf.tailwindblog.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;

@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import tsajf.tailwindblog.entity.Post;
+import tsajf.tailwindblog.model.Post;
 import tsajf.tailwindblog.repository.CommentRepository;
 import tsajf.tailwindblog.repository.PostRepository;
 

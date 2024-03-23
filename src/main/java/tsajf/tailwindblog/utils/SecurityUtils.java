@@ -6,15 +6,24 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import tsajf.tailwindblog.model.User;
 
 public class SecurityUtils {
 
-    public static UserDetails getCurrentUser() {
+    public static User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.getPrincipal() instanceof UserDetails userDetails) {
-            return userDetails;
+
+        if (authentication != null && authentication.isAuthenticated()) {
+            Object principal = authentication.getPrincipal();
+
+            if (principal instanceof UserDetails userDetails) {
+                return (User) userDetails;
+            } else {
+                throw new IllegalStateException("Invalid Principal");
+            }
+        } else {
+            throw new IllegalStateException("Unauthenticated");
         }
-        return null;
     }
 
     public static String getBaseUrl(String path) {

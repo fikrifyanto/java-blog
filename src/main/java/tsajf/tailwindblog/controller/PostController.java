@@ -7,16 +7,14 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import tsajf.tailwindblog.entity.Post;
-import tsajf.tailwindblog.entity.User;
+import tsajf.tailwindblog.model.Post;
+import tsajf.tailwindblog.model.User;
 import tsajf.tailwindblog.repository.PostRepository;
-import tsajf.tailwindblog.repository.UserRepository;
 import tsajf.tailwindblog.repository.CategoryRepository;
 import tsajf.tailwindblog.service.PostMediaService;
 import tsajf.tailwindblog.utils.SecurityUtils;
 
 import java.io.IOException;
-import java.util.Objects;
 
 @Controller
 public class PostController {
@@ -25,15 +23,12 @@ public class PostController {
 
     private final CategoryRepository categoryRepository;
 
-    private final UserRepository userRepository;
-
     private final PostMediaService postMediaService;
 
 
-    public PostController(PostRepository postRepository, CategoryRepository categoryRepository, UserRepository userRepository, PostMediaService postMediaService) {
+    public PostController(PostRepository postRepository, CategoryRepository categoryRepository, PostMediaService postMediaService) {
         this.postRepository = postRepository;
         this.categoryRepository = categoryRepository;
-        this.userRepository = userRepository;
         this.postMediaService = postMediaService;
     }
 
@@ -65,7 +60,7 @@ public class PostController {
             return "admin/post/create";
         }
 
-        User user = userRepository.findByUsername(Objects.requireNonNull(SecurityUtils.getCurrentUser()).getUsername());
+        User user = SecurityUtils.getCurrentUser();
 
         Post post = new Post();
         post.setUser(user);
@@ -102,7 +97,7 @@ public class PostController {
             return "admin/post/edit";
         }
 
-        User user = userRepository.findByUsername(Objects.requireNonNull(SecurityUtils.getCurrentUser()).getUsername());
+        User user = SecurityUtils.getCurrentUser();
 
         Post post = postRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid post Id:" + id));
         post.setUser(user);

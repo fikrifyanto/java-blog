@@ -8,7 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import tsajf.tailwindblog.entity.Media;
+import tsajf.tailwindblog.model.Media;
 import tsajf.tailwindblog.repository.MediaRepository;
 import tsajf.tailwindblog.service.UploadService;
 import tsajf.tailwindblog.utils.SecurityUtils;
