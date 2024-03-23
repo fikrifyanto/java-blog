@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -31,6 +34,9 @@ public class Post {
     @OneToOne
     @JoinColumn(name = "media_id", referencedColumnName = "id")
     private Media media;
+
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
 
     @NotNull(message = "Title is required!")
     @NotEmpty(message = "Title is required!")

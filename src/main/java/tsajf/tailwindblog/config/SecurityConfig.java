@@ -23,8 +23,8 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.formLogin(formLogin -> formLogin.loginPage("/login")
                         .defaultSuccessUrl("/admin/post"))
-                .authorizeHttpRequests(req->req
-                        .requestMatchers("/", "/assets/css/*", "/assets/js/*", "/login").permitAll()
+                .authorizeHttpRequests(req -> req
+                        .requestMatchers("/", "/category/**", "/post/**", "/assets/css/*", "/assets/js/*", "/login").permitAll()
                         .requestMatchers("/admin/**").hasAnyAuthority("ADMIN", "SUPER_ADMIN")
                         .anyRequest().authenticated())
                 .userDetailsService(userService)
