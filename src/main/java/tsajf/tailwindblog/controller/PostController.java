@@ -7,14 +7,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import tsajf.tailwindblog.entity.Media;
 import tsajf.tailwindblog.entity.Post;
 import tsajf.tailwindblog.entity.User;
-import tsajf.tailwindblog.repository.MediaRepository;
 import tsajf.tailwindblog.repository.PostRepository;
 import tsajf.tailwindblog.repository.UserRepository;
 import tsajf.tailwindblog.repository.CategoryRepository;
-import tsajf.tailwindblog.service.UploadService;
+import tsajf.tailwindblog.service.PostMediaService;
 import tsajf.tailwindblog.utils.SecurityUtils;
 
 import java.io.IOException;
@@ -29,17 +27,14 @@ public class PostController {
 
     private final UserRepository userRepository;
 
-    private final MediaRepository mediaRepository;
-
-    private final UploadService uploadService;
+    private final PostMediaService postMediaService;
 
 
-    public PostController(PostRepository postRepository, CategoryRepository categoryRepository, UserRepository userRepository, MediaRepository mediaRepository, UploadService uploadService) {
+    public PostController(PostRepository postRepository, CategoryRepository categoryRepository, UserRepository userRepository, PostMediaService postMediaService) {
         this.postRepository = postRepository;
         this.categoryRepository = categoryRepository;
         this.userRepository = userRepository;
-        this.mediaRepository = mediaRepository;
-        this.uploadService = uploadService;
+        this.postMediaService = postMediaService;
     }
 
     @GetMapping("/admin/post")
@@ -78,14 +73,7 @@ public class PostController {
         post.setCategory(store.getCategory());
         post.setContent(store.getContent());
 
-        String filePath = uploadService.save(file);
-        Media media = new Media();
-        media.setName(store.getTitle());
-        media.setPath(filePath);
-        media.setUrl(SecurityUtils.getBaseUrl(filePath));
-        media = mediaRepository.save(media);
-
-        post.setMedia(media);
+        postMediaService.save(store, file, post);
 
         postRepository.save(post);
 
@@ -123,14 +111,7 @@ public class PostController {
         post.setContent(update.getContent());
 
         if (!file.isEmpty()) {
-            String filePath = uploadService.save(file);
-            Media media = new Media();
-            media.setName(update.getTitle());
-            media.setPath(filePath);
-            media.setUrl(SecurityUtils.getBaseUrl(filePath));
-            media = mediaRepository.save(media);
-
-            post.setMedia(media);
+            postMediaService.save(update, file, post);
         } else {
             post.setMedia(null);
         }
