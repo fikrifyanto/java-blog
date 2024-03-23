@@ -7,11 +7,10 @@
     </button>
     <div class="flex justify-end items-center">
         <div></div>
-        <form th:action="@{/logout}" class="relative" method="POST">
-            <button class="flex items-center gap-4 pl-6 outline-none"
-                    type="submit" aria-expanded="false" data-headlessui-state=""><img
-                    class="h-8 w-8 rounded-full" src="https://i.pravatar.cc/300" alt="Admin"><span
-                    class="font-medium text-sm">Admin</span>
+        <div class="relative">
+            <button id="popup-trigger" class="flex items-center gap-4 pl-6 outline-none" aria-expanded="false">
+                <img class="h-8 w-8 rounded-full" src="https://i.pravatar.cc/300" alt="Admin">
+                <span class="font-medium text-sm">Admin</span>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                      aria-hidden="true" data-slot="icon" class="h-4 w-4 text-slate-400 stroke-2">
                     <path fill-rule="evenodd"
@@ -19,6 +18,12 @@
                           clip-rule="evenodd"></path>
                 </svg>
             </button>
-        </form>
+            <div id="popup-content" class="popup-content hidden absolute right-0 mt-2 w-30 bg-white border border-gray-200 rounded shadow-md z-10">
+                <a href="/profile" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">Your Profile</a>
+                <form th:action="@{/logout}" method="POST" class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
+                    <button type="submit" class="outline-none">Logout</button>
+                </form>
+            </div>
+        </div>
     </div>
 </header>
