@@ -1,7 +1,9 @@
 package tsajf.tailwindblog.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,22 +22,23 @@ public class CategoryController {
 
     @GetMapping("/admin/category")
     public String index(Model model) {
-        model.addAttribute("title", "Category List");
-        model.addAttribute("page", "admin/category/index");
         model.addAttribute("categories", categoryRepository.findAll());
-        return "admin/fragments/layout";
+        return "admin/category/index";
     }
 
     @GetMapping("/admin/category/create")
-    public String showCreateForm(Model model) {
+    public String create(Model model) {
         model.addAttribute("category", new Category());
-        model.addAttribute("title", "Add Category");
-        model.addAttribute("page", "admin/category/create");
-        return "admin/fragments/layout";
+        return "admin/category/create";
     }
 
     @PostMapping("/admin/category/store")
-    public String create(@ModelAttribute Category store) {
+    public String store(@ModelAttribute @Valid Category store, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("category", store);
+            return "admin/category/create";
+        }
+
         categoryRepository.save(store);
         return "redirect:/admin/category";
     }
@@ -44,14 +47,17 @@ public class CategoryController {
     public String edit(@PathVariable("id") Integer id, Model model) {
         Category category = categoryRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid category Id:" + id));
-        model.addAttribute("title", "Edit Category");
-        model.addAttribute("page", "admin/category/edit");
         model.addAttribute("category", category);
-        return "admin/fragments/layout";
+        return "admin/category/edit";
     }
 
     @PostMapping("/admin/category/update/{id}")
-    public String update(@PathVariable("id") Integer id, @ModelAttribute Category update) {
+    public String update(@PathVariable("id") Integer id, @ModelAttribute @Valid Category update, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("category", update);
+            return "admin/category/edit";
+        }
+
         Category category = categoryRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid category Id:" + id));
         category.setName(update.getName());
