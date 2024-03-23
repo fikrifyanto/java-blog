@@ -81,6 +81,10 @@ public class User implements UserDetails {
         return true;
     }
 
+    public boolean isSuperAdmin() {
+        return this.role == Role.SUPER_ADMIN;
+    }
+
     public enum Role {
         ADMIN,
         SUPER_ADMIN

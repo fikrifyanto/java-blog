@@ -22,7 +22,7 @@
                                     Post
                                 </a>
                             </li>
-                            <li th:class="${page == 'user' ? 'bg-indigo-700 text-white rounded-md p-2 text-sm font-sans hover:bg-indigo-700' : 'bg-transparent text-slate-300 rounded-md p-2 text-sm font-sans hover:bg-indigo-700'}">
+                            <li th:if="${#authentication.getPrincipal().isSuperAdmin()}" th:class="${page == 'user' ? 'bg-indigo-700 text-white rounded-md p-2 text-sm font-sans hover:bg-indigo-700' : 'bg-transparent text-slate-300 rounded-md p-2 text-sm font-sans hover:bg-indigo-700'}">
                                 <a class="flex items-center gap-3" th:href="@{/admin/user}">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                          stroke-width="1.5" stroke="currentColor" aria-hidden="true"
