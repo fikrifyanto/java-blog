@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -7,22 +7,22 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link th:href="@{/assets/css/main.css}" rel="stylesheet">
     <link th:href="@{/assets/css/froala_editor.css}" rel="stylesheet">
-    <title th:text="'Admin - ' + ${title}"></title>
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Tailwind Blog</title>
 </head>
 <body>
 
 <div class="bg-white">
-
     <main>
         <div class="grid grid-cols-5 min-h-screen bg-slate">
             <div th:replace="~{admin/fragments/sidebar}"></div>
             <div id="container" class="col-span-5 lg:col-span-4 transition-all">
                 <div th:replace="~{admin/fragments/header}"></div>
-                <div class="p-4 lg:p-8" th:insert="~{${page}}"></div>
+                <div class="p-4 lg:p-8">
+                    <div layout:fragment="content"></div>
+                </div>
             </div>
         </div>
     </main>
-
 </div>
 
 <script th:src="@{/assets/js/sidebar.js}"></script>
