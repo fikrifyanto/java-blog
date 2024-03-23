@@ -1,13 +1,12 @@
 package tsajf.tailwindblog.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.sql.Date;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Getter
 @Setter
@@ -26,19 +25,24 @@ public class Post {
 
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
+    @NotNull(message = "Category is required!")
     private Category category;
 
     @OneToOne
     @JoinColumn(name = "media_id", referencedColumnName = "id")
     private Media media;
 
-    @NotNull
+    @NotNull(message = "Title is required!")
+    @NotEmpty(message = "Title is required!")
     private String title;
 
-    @NotNull
-    private Date date;
+    @NotNull(message = "Date is required!")
+    @NotEmpty(message = "Date is required!")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private String date;
 
-    @NotNull
+    @NotNull(message = "Content is required!")
+    @NotEmpty(message = "Content is required!")
     @Column(name = "content", columnDefinition = "TEXT")
     private String content;
 }

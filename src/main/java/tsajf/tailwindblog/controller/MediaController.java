@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import tsajf.tailwindblog.entity.Media;
-import tsajf.tailwindblog.entity.User;
 import tsajf.tailwindblog.repository.MediaRepository;
-import tsajf.tailwindblog.service.MediaService;
+import tsajf.tailwindblog.service.UploadService;
+import tsajf.tailwindblog.utils.SecurityUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,11 +23,11 @@ public class MediaController {
 
     private final MediaRepository mediaRepository;
 
-    private final MediaService mediaService;
+    private final UploadService uploadService;
 
-    public MediaController(MediaRepository mediaRepository, MediaService mediaService) {
+    public MediaController(MediaRepository mediaRepository, UploadService uploadService) {
         this.mediaRepository = mediaRepository;
-        this.mediaService = mediaService;
+        this.uploadService = uploadService;
     }
 
     @GetMapping("/admin/media")
@@ -54,7 +54,15 @@ public class MediaController {
             return "admin/category/create";
         }
 
-        mediaService.save(store.getName(), file);
+        String filePath = uploadService.save(file);
+
+        Media media = new Media();
+        media.setName(store.getName());
+        media.setPath(filePath);
+        media.setUrl(SecurityUtils.getBaseUrl(filePath));
+
+        mediaRepository.save(media);
+
         return "redirect:/admin/media";
     }
 
@@ -97,6 +105,7 @@ public class MediaController {
                 boolean deleted = file.delete();
                 if(!deleted) {
                     redirectAttributes.addFlashAttribute("error", "File is not exists in storage!");
+                    return "redirect:/admin/media";
                 }
             }
 
