@@ -42,30 +42,34 @@
             <div class="flex flex-col divide-y items-start justify-start gap-4 mt-8">
                 <div th:each="comment : ${post.comments}" class="pt-4 pb-4">
                     <div class="flex flex-col text-gray-600">
-                        <div class="text-sm">Melany Wolff</div>
-                        <div class="text-sm text-gray-500">qpfannerstill@example.org</div>
+                        <div class="text-sm" th:text="${comment.name}"></div>
+                        <div class="text-sm text-gray-500" th:text="${comment.email}"></div>
+                        <div class="text-xs text-gray-500 re" th:text="${comment.date}"></div>
                     </div>
-                    <div class="italic text-gray-800 mt-4"> "Eum optio consectetur corporis sint."</div>
+                    <div class="italic text-gray-800 mt-4"> "<span th:text="${comment.content}"></span>"</div>
                 </div>
             </div>
-            <form class="flex flex-col gap-4 max-w-xl mt-8">
+            <form th:action="@{'/comment/' + ${id}}" th:object="${comment}" method="POST" class="flex flex-col gap-4 max-w-xl mt-8">
                 <div><label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
                     <div class="mt-2">
-                        <input id="name" type="text" required=""
-                               class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <input id="name" type="text" required
+                               th:field="*{name}"
+                               class="px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
                 <div><label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
                     <div class="mt-2">
-                        <input id="email" type="email" required=""
-                               class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <input id="email" type="email" required
+                               th:field="*{email}"
+                               class="px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
                 <div>
                     <label for="content" class="block text-sm font-medium leading-6 text-gray-900">Comment</label>
                     <div class="mt-2">
-                        <textarea id="content" required=""
-                                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <textarea id="content" required
+                                  th:field="*{content}"
+                                  class="px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </textarea>
                     </div>
                 </div>

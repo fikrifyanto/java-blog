@@ -35,7 +35,7 @@ public class Post {
     @JoinColumn(name = "media_id", referencedColumnName = "id")
     private Media media;
 
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
 
     @NotNull(message = "Title is required!")

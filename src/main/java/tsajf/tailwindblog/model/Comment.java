@@ -1,13 +1,15 @@
 package tsajf.tailwindblog.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Date;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -26,16 +28,19 @@ public class Comment {
     @JoinColumn(name = "post_id", referencedColumnName = "id")
     private Post post;
 
-    @NotNull
+    @NotNull(message = "Name is required!")
+    @NotEmpty(message = "Name is required!")
     private String name;
 
-    @NotNull
+    @NotNull(message = "Comment is required!")
+    @NotEmpty(message = "Email is required!")
+    @Email(message = "Email is not valid!")
     private String email;
 
-    @NotNull
     private Date date;
 
-    @NotNull
+    @NotNull(message = "Comment is required!")
+    @NotEmpty(message = "Content is required!")
     private String content;
 
 }

@@ -2,14 +2,18 @@ package tsajf.tailwindblog.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 import tsajf.tailwindblog.model.Category;
+import tsajf.tailwindblog.model.Comment;
 import tsajf.tailwindblog.model.Post;
 import tsajf.tailwindblog.repository.CategoryRepository;
+import tsajf.tailwindblog.repository.CommentRepository;
 import tsajf.tailwindblog.repository.PostRepository;
-import tsajf.tailwindblog.repository.UserRepository;
 
+import java.util.Date;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,9 +24,12 @@ public class VisitorController {
 
     private final PostRepository postRepository;
 
-    public VisitorController(CategoryRepository categoryRepository, PostRepository postRepository) {
+    private final CommentRepository commentRepository;
+
+    public VisitorController(CategoryRepository categoryRepository, PostRepository postRepository, CommentRepository commentRepository) {
         this.categoryRepository = categoryRepository;
         this.postRepository = postRepository;
+        this.commentRepository = commentRepository;
     }
 
     @GetMapping("/")
@@ -55,6 +62,29 @@ public class VisitorController {
         return "visitor/category";
     }
 
+    @PostMapping("/comment/{id}")
+    public String comment(@PathVariable("id") Integer id, @ModelAttribute Comment storeComment) {
+        Optional<Post> optionalPost = postRepository.findById(id);
+
+        if(optionalPost.isEmpty()) {
+            return "redirect:/";
+        }
+
+        LocalDateTime localDateTime = LocalDateTime.now();
+        Instant instant = localDateTime.atZone(ZoneId.systemDefault()).toInstant();
+        Date date = Date.from(instant);
+
+        Comment comment = new Comment();
+        comment.setDate(date);
+        comment.setPost(optionalPost.get());
+        comment.setName(storeComment.getName());
+        comment.setEmail(storeComment.getEmail());
+        comment.setContent(storeComment.getContent());
+        commentRepository.save(comment);
+
+        return "redirect:/post/" + id;
+    }
+
     @GetMapping("/post/{id}")
     public String post(@PathVariable("id") Integer id, Model model) {
 
@@ -66,9 +96,11 @@ public class VisitorController {
         }
 
         Post post = optionalPost.get();
+        Comment comment = new Comment();
 
         model.addAttribute("categories", categories);
         model.addAttribute("post", post);
+        model.addAttribute("comment", comment);
 
         return "visitor/post";
     }
