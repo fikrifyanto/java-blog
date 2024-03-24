@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="border shadow-sm rounded-md overflow-x-scroll overflow-y-hidden">
-        <table class="table-auto w-full text-sm">
+        <table class="table-fixed w-full text-sm">
             <thead class="border-b border-slate-300 bg-slate-50">
             <tr>
                 <th class="font-medium text-left py-4 px-6">Name</th>
@@ -27,9 +27,9 @@
                 <td th:text="${comment.name}" class="py-4 px-6"></td>
                 <td th:text="${comment.email}" class="py-4 px-6"></td>
                 <td th:text="${comment.content}" class="py-4 px-6"></td>
-                <td>
+                <td width="15%">
                     <a class="text-red-600 px-2" th:href="@{'/admin/comment/delete/' + ${comment.id}}">Delete</a>
-                    <a class="text-indigo-600 px-2" th:href="@{'/admin/comment/' + ${comment.post.id}}">See Post</a>
+                    <a class="text-indigo-600 px-2" th:href="@{'/post/' + ${comment.post.id}}">See Post</a>
                 </td>
             </tr>
             </tbody>

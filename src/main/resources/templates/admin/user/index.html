@@ -34,8 +34,10 @@
                 <td th:text="${user.username}" class="text-gray-600 py-4 px-6"></td>
                 <td th:text="${user.role}" class="text-gray-600 py-4 px-6"></td>
                 <td>
-                    <a class="text-red-600 px-2" th:href="@{'/admin/user/delete/' + ${user.id}}">Delete</a>
-                    <a class="text-indigo-600 px-2" th:href="@{'/admin/user/edit/' + ${user.id}}">Edit</a>
+                    <div th:if="${#authentication.getPrincipal().id != user.id}">
+                        <a class="text-red-600 px-2" th:href="@{'/admin/user/delete/' + ${user.id}}">Delete</a>
+                        <a class="text-indigo-600 px-2" th:href="@{'/admin/user/edit/' + ${user.id}}">Edit</a>
+                    </div>
                 </td>
             </tr>
             </tbody>
