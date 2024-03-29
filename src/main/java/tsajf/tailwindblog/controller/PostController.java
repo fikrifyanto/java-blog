@@ -25,7 +25,6 @@ public class PostController {
 
     private final PostMediaService postMediaService;
 
-
     public PostController(PostRepository postRepository, CategoryRepository categoryRepository, PostMediaService postMediaService) {
         this.postRepository = postRepository;
         this.categoryRepository = categoryRepository;

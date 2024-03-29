@@ -9,6 +9,7 @@ import tsajf.tailwindblog.model.Post;
 import tsajf.tailwindblog.repository.CategoryRepository;
 import tsajf.tailwindblog.repository.CommentRepository;
 import tsajf.tailwindblog.repository.PostRepository;
+import tsajf.tailwindblog.utils.StringUtils;
 
 import java.util.Date;
 import java.time.Instant;
@@ -37,6 +38,11 @@ public class VisitorController {
 
         List<Category> categories = categoryRepository.findFirst4ByOrderByName();
         List<Post> posts = postRepository.findAll();
+
+        for (Post post : posts) {
+            String excerpt = StringUtils.excerpt(post.getContent());
+            post.setContent(excerpt);
+        }
 
         model.addAttribute("categories", categories);
         model.addAttribute("posts", posts);
