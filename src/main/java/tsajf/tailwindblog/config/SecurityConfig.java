@@ -24,7 +24,7 @@ public class SecurityConfig {
         return http.formLogin(formLogin -> formLogin.loginPage("/login")
                         .defaultSuccessUrl("/admin/post"))
                 .authorizeHttpRequests(req -> req
-                        .requestMatchers("/", "/category/**", "/upload/**", "/post/**", "/comment/**", "/assets/css/*", "/assets/js/*", "/login").permitAll()
+                        .requestMatchers("/", "/category/**", "/upload/**", "/post/**", "/comment/**", "/assets/**", "/login").permitAll()
                         .requestMatchers("/admin/**").hasAnyAuthority("ADMIN", "SUPER_ADMIN")
                         .anyRequest().authenticated())
                 .userDetailsService(userService)
